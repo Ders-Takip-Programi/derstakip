@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_ogrekle"
+        android:icon="@drawable/ic_plus_s"
+        android:title="Ekle" />
+
+    <item
+        android:id="@+id/nav_ogrlistele"
+        android:icon="@drawable/ic_list_s"
+        android:title="Öğrenci Liste" />
+
+    <item
+        android:id="@+id/nav_anasayfa"
+        android:icon="@drawable/ic_home"
+        android:title="Anasayfa" />
+    <item
+        android:id="@+id/nav_odevekle"
+        android:icon="@drawable/ic_notepad_s"
+
+        android:title="Ödev Ekle" />
+
+    <item
+        android:id="@+id/nav_odevgoster"
+        android:icon="@drawable/ic_portfolio_s"
+        android:title="Ödev Liste" />
+</menu>

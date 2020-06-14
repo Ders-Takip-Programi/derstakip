@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+
+    tools:context=".Durum_Goruntule">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:windowSoftInputMode="adjustResize"
+
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/mtv3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dikkat! Ödevlerini Görmek Ve Değiştirmek İstediğiniz Öğrenciye Tıklayın İçin Önce Kilit Aç Butonuna Tıklayın."
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:background="@color/colorAccent"
+        android:textColor="#ffff"
+        android:padding="5dp"
+        android:textSize="20sp"
+        android:marqueeRepeatLimit="marquee_forever"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recview3"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60sp"
+            android:scrollbars="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    </LinearLayout>
+    </LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        app:iconSize="25sp"
+        app:itemBackground="@color/white"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/menu_xml" />
+
+</RelativeLayout>

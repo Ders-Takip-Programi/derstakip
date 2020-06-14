@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Ders Takip</string>
+    <string name="appbar_scrolling_view_behavior" />
+    <string name="title_activity_ogrdurum_tab">ogrdurum_tab</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,21 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme.NoActionBar"  parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:actionBarSize">65dp</item>
+        <item name="actionBarSize">65dp</item>
+
+        <item name="fontFamily">@font/karatay</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+<style name="btn_hover" parent="android:Widget.Button">
+    <item name="android:background">@color/colorPrimary</item>
+    <item name="met_textColor">@color/white</item>
+</style>
+
+</resources>

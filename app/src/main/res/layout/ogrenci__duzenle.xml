@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Ogrenci_Duzenle">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40sp">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="30sp"
+                    android:layout_marginRight="30sp"
+                    android:layout_marginBottom="15sp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/isimduzenle"
+                        android:layout_width="match_parent"
+                        android:textColor="#000000"
+
+                        android:layout_height="wrap_content"
+                        android:hint="İsim*" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="30sp"
+                    android:layout_marginRight="30sp"
+                    android:layout_marginBottom="15sp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/soyisimduzenle"
+                        android:layout_width="match_parent"
+
+                        android:textColor="#000000"
+                        android:layout_height="wrap_content"
+                        android:hint="Soyisim*" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="30sp"
+                    android:layout_marginRight="30sp"
+                    android:layout_marginBottom="15sp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tcduzenle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000000"
+                        android:hint="TC Kimlik"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30sp"
+                    android:textColor="#000000"
+                    android:layout_marginRight="30sp"
+                    android:layout_marginBottom="15sp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/veliadduzenle"
+                        android:layout_width="match_parent"
+
+                        android:textColor="#000000"
+                        android:layout_height="wrap_content"
+                        android:hint="Veli İsim" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="30sp"
+                    android:layout_marginRight="30sp"
+                    android:layout_marginBottom="15sp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/velitelduzenle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000000"
+                        android:hint="Veli Telefon"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:textColor="#000000"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30sp"
+                    android:layout_marginRight="30sp"
+                    android:layout_marginBottom="15sp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/adresduzenle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000000"
+                        android:hint="Adres" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <Button
+                    android:id="@+id/kaydetduzenle"
+                    android:layout_width="match_parent"
+                    android:layout_height="50sp"
+                    android:layout_marginLeft="200sp"
+                    android:layout_marginRight="30sp"
+                    android:layout_marginBottom="15sp"
+                    android:fontFamily="@font/karatay"
+                    android:text="kaydet"
+
+                    android:background="@drawable/buttonshape2"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/ogrencikaydet2"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:height="340sp"
+                    android:fontFamily="@font/karatay"
+                    android:text="Kaydet"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+
+        android:layout_height="60sp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        app:iconSize="25sp"
+        app:itemBackground="@color/white"
+
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/menu_xml" />
+
+</RelativeLayout>
