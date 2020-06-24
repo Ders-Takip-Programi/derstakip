@@ -35,7 +35,7 @@ public class Ogrenci_Listesi extends AppCompatActivity {
     ImageView notfoundimg;
     Button notfoundbtn;
     dbhelper db;
-    TextView mt2;
+    TextView kayanYazi;
     RecyclerView.LayoutManager layoutManager;
     Calendar c;
     String selected_date;
@@ -47,11 +47,7 @@ public class Ogrenci_Listesi extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.action_bar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        TextView tx=findViewById(R.id.actionbar_textview);
-        tx.setText("Öğrenci Listesi");
+        CreateActionBar createActionBar=new CreateActionBar(this,getSupportActionBar(),"Öğrenci Listesi");
         setContentView(R.layout.ogrenci__listesi);
         db=new dbhelper(this);
         tanımla();
@@ -64,39 +60,14 @@ public class Ogrenci_Listesi extends AppCompatActivity {
         layoutManager=new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         BottomNavigationView navbar;
-        mt2=findViewById(R.id.mtv2);
-        mt2.setSelected(true);
-      //  notfoundbtn=findViewById(R.id.not_found_btn);
-       // notfoundimg=findViewById(R.id.not_found_img);
-        navbar=findViewById(R.id.bottomBar);
-        navbar.setSelectedItemId(R.id.nav_ogrlistele);
-        navbar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
-                    case R.id.nav_anasayfa:
-                        Intent i=new Intent(getApplicationContext(),Anasayfa.class);
-                        startActivity(i);
-                        return true;
-                    case R.id.nav_odevekle:
-                        show_datedialog();
-                        return true;
-                    case R.id.nav_odevgoster:
-                        Intent i3=new Intent(getApplicationContext(),Durum_Goruntule.class);
-                        startActivity(i3);
-                        return true;
-                    case R.id.nav_ogrekle:
-                        Intent i2=new Intent(getApplicationContext(),Ogrenci_Ekle.class);
-                        startActivity(i2);
-                        return true;
-                    case R.id.nav_ogrlistele:
+        kayanYazi=findViewById(R.id.mtv2);
+        kayanYazi.setSelected(true);
+        bottom_bar_call();
 
-                        return true;
-                }
-                return false;
-            }
-        });
-
+    }
+    private void bottom_bar_call(){
+        BottomBarActions bottomBarActions=new BottomBarActions(getApplicationContext(),R.id.nav_ogrlistele,Ogrenci_Listesi.class,this);
+        bottomBarActions.select_navbar();
     }
     public void tıklama(){
 
