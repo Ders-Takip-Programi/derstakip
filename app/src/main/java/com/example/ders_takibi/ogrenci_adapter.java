@@ -33,10 +33,12 @@ public class ogrenci_adapter extends RecyclerView.Adapter<ogrenci_adapter.taniml
     dbhelper dbhelp;
     int[] color_arr;
     Random r;
+    CreateAlert createAlert;
     public ogrenci_adapter(Context context, ArrayList<ogrenci_model> data_arr) {
         this.context = context;
         this.data_arr = data_arr;
         dbhelp = new dbhelper(context);
+
          r =new Random();
 
         color_arr= new int[]{Color.parseColor("#eb4034"),Color.parseColor("#4831D4"),Color.parseColor("#fad744"),
@@ -50,6 +52,7 @@ public class ogrenci_adapter extends RecyclerView.Adapter<ogrenci_adapter.taniml
 
         // set the Context here
         context = parent.getContext();
+        createAlert=new CreateAlert(context);
         return new tanimla(view);
     }
 
@@ -208,7 +211,7 @@ public class ogrenci_adapter extends RecyclerView.Adapter<ogrenci_adapter.taniml
            final int pos4delete = viewHolder.getAdapterPosition();
 
            if (direction == ItemTouchHelper.LEFT) {
-               new SweetAlertDialog(context,SweetAlertDialog.WARNING_TYPE).setTitleText("Emin misiniz?").setContentText("Öğrenci bilgileri tamamen silinecek!")
+                    createAlert.eminMisiniz("Öğrenci bilgileri tamamen silinecek!")
                        .setCancelText("Hayır")
                        .setConfirmText("Evet")
                        .showCancelButton(true)
@@ -248,75 +251,7 @@ public class ogrenci_adapter extends RecyclerView.Adapter<ogrenci_adapter.taniml
                        }).show();
        }
 
-/*
-        public void onSwipe(@NonNull RecyclerView.ViewHolder viewHolder,int direction) {
-            final int pos4delete = viewHolder.getAdapterPosition();
-            if (direction == ItemTouchHelper.LEFT) {
-               new SweetAlertDialog(context,SweetAlertDialog.NORMAL_TYPE).setTitleText("Emin misiniz?").setContentText("Öğrenci bilgileri tamamen silinecek!")
-                       .setCancelText("Hayır")
-                       .setConfirmText("Evet")
-                       .showCancelButton(true)
-                       .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                           @Override
-                           public void onClick(SweetAlertDialog sweetAlertDialog) {
 
-                           }
-                       })
-                       .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                           @Override
-                           public void onClick(SweetAlertDialog sweetAlertDialog) {
-                               Boolean sonuc = dbhelp.delete_student(data_arr.get(pos4delete).getId());
-                               if (sonuc){
-                                   new SweetAlertDialog(context,SweetAlertDialog.SUCCESS_TYPE).setContentText("Başarıyla silindi.").show();
-                                   data_arr.remove(pos4delete);
-                                   notifyItemRemoved(pos4delete);
-                               }
-                               else{
-                                   new SweetAlertDialog(context,SweetAlertDialog.ERROR_TYPE).setTitleText("Hata").setContentText("Silinemedi.Sonra Tekrar Deneyin").show();
-                               }
-                           }
-                       }).show();
-            }
-        }
-
-        public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, int actionStateIdle, final int direction) {
-            final int pos4delete = viewHolder.getAdapterPosition();
-            if (direction == ItemTouchHelper.LEFT) {
-                new SweetAlertDialog(context,SweetAlertDialog.WARNING_TYPE).setTitleText("Emin misiniz?").setContentText("Öğrenci bilgileri tamamen silinecek!")
-                        .setCancelText("Hayır")
-                        .setConfirmText("Evet")
-                        .showCancelButton(true)
-                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-
-                            }
-                        })
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sDialog) {
-                                Boolean sonuc = dbhelp.delete_student(data_arr.get(pos4delete).getId());
-                                if (sonuc){
-                                    sDialog.setTitleText("").setContentText("Başarıyla silindi.")
-                                            .showCancelButton(false)
-                                            .setConfirmText("Tamam")
-                                            .setConfirmClickListener(null)
-                                            .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-
-                                    data_arr.remove(pos4delete);
-                                    notifyItemRemoved(pos4delete);
-
-                                }
-                                else{
-                                    sDialog.setContentText("Silinemedi. Sonra tekrar deneyin!")
-                                            .showCancelButton(false)
-                                            .setConfirmText("Tamam")
-                                            .setConfirmClickListener(null)
-                                            .changeAlertType(SweetAlertDialog.WARNING_TYPE);
-                                }
-                            }
-                        }).show();
-            }*/
         }
 
        @Override
