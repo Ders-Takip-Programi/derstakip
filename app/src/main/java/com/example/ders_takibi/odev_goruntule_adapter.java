@@ -28,6 +28,7 @@ public class odev_goruntule_adapter extends RecyclerView.Adapter<odev_goruntule_
     ArrayList<ogrenci_kisisel_model> data_arr;
     dbhelper dbhelp;
     String tablo_name;
+    CreateAlert createAlert;
 
     public odev_goruntule_adapter(Context context, ArrayList<ogrenci_kisisel_model> data_arr, String tablo_adi) {
         this.context = context;
@@ -42,6 +43,7 @@ public class odev_goruntule_adapter extends RecyclerView.Adapter<odev_goruntule_
     public odev_goruntule_adapter.tanimla onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.example_item4, parent, false);
         context = parent.getContext();
+        createAlert=new CreateAlert(context);
         return new odev_goruntule_adapter.tanimla(view);
     }
 
@@ -85,7 +87,7 @@ public class odev_goruntule_adapter extends RecyclerView.Adapter<odev_goruntule_
                     final ogrenci_kisisel_model om = new ogrenci_kisisel_model(data_arr.get(pos).getId(), data_arr.get(pos).getTarih(),
                             data_arr.get(pos).getGun(), yapilan, ss, not, arti, degerlendir_str,finalSaat,ders_yaptimi);
 
-                    new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE).setTitleText("Emin misiniz?").setContentText("Ödev bilgileri değiştirilecek!")
+                            createAlert.eminMisiniz("Ödev bilgileri değiştirilecek!")
                             .setCancelText("Hayır")
                             .setConfirmText("Evet")
                             .setCancelText("Hayır")
@@ -182,7 +184,7 @@ public class odev_goruntule_adapter extends RecyclerView.Adapter<odev_goruntule_
             // emin misiniz?
             final int pos = viewHolder.getAdapterPosition();
 
-            new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE).setTitleText("Emin misiniz?").setContentText("Ödev kayıtları silinecek!")
+            createAlert.eminMisiniz("Ödev kayıtları silinecek!")
                     .setCancelText("Hayır")
                     .setConfirmText("Evet")
                     .showCancelButton(true)
