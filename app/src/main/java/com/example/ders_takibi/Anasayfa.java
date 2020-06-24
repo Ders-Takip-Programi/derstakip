@@ -40,6 +40,9 @@ public class Anasayfa extends AppCompatActivity {
         tiklama();
     }
 
+
+
+
     @Override
     public void onBackPressed() {
         if (exit+2000>System.currentTimeMillis()){
