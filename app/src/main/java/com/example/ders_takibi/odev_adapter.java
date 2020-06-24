@@ -26,6 +26,8 @@ public class odev_adapter extends RecyclerView.Adapter<odev_adapter.tanimla> {
     Context context;
     dbhelper helper;
     String tarih,gun;
+    CreateAlert createAlert;
+    String errorMessage="";
 
 
     ArrayList<ogrenci_model> data_arr;
@@ -42,7 +44,9 @@ public class odev_adapter extends RecyclerView.Adapter<odev_adapter.tanimla> {
     @Override
     public odev_adapter.tanimla onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(context).inflate(R.layout.example_item3,parent,false);
+
         context = parent.getContext();
+        createAlert=new CreateAlert(context);
         return new tanimla(view);
     }
 
@@ -92,7 +96,7 @@ public class odev_adapter extends RecyclerView.Adapter<odev_adapter.tanimla> {
             @Override
             public void onClick(View view) {
                 if (!holder.yapti_switch.isChecked()){
-                    new SweetAlertDialog(context,SweetAlertDialog.WARNING_TYPE).setConfirmText("Tamam").setContentText("Ders Vermeyen Öğrenciye Not Giremezsiniz").show();
+                    createAlert.warningAlert("Ders Vermeyen Öğrenciye Not Giremezsiniz").show();
                 }
                 else {
                 String ders_yaptimi="1";
@@ -113,12 +117,18 @@ public class odev_adapter extends RecyclerView.Adapter<odev_adapter.tanimla> {
 
                 }
                 else if (sonuc.equals("Bir Hata Oldu Tekrar Deneyin")){
-                    new SweetAlertDialog(context,SweetAlertDialog.ERROR_TYPE).setTitleText("Hata").setContentText(data_arr.get(position).getIsim().substring(0,1).toUpperCase()+data_arr.get(position).getIsim().substring(1)+" Öğrencisine "+sonuc).show();
+                    errorMessage=data_arr.get(position).getIsim().substring(0,1).toUpperCase()+data_arr.get(position).getIsim().substring(1)+
+                            " Öğrencisine "+sonuc;
+                    createAlert.errorAlert(errorMessage).show();
 
 
                 }
                 else{
-                    new SweetAlertDialog(context,SweetAlertDialog.ERROR_TYPE).setTitleText("Hata").setContentText(data_arr.get(position).getIsim().substring(0,1).toUpperCase()+data_arr.get(position).getIsim().substring(1)+" Öğrencisine "+sonuc+" Ödev Görüntüle Ekranından Değiştirebilirsiniz. ").show();
+
+                    errorMessage=data_arr.get(position).getIsim().substring(0,1).toUpperCase()+data_arr.get(position).getIsim().substring(1)+
+                            " Öğrencisine "+sonuc+" Ödev Görüntüle Ekranından Değiştirebilirsiniz. ";
+
+                    createAlert.errorAlert(errorMessage).show();
                     holder.yapilan.setText("");
                     holder.artıeksi.setText("");
                     holder.degerlendir.setText("");
