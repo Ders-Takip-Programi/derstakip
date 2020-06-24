@@ -109,7 +109,7 @@ public class odev_adapter extends RecyclerView.Adapter<odev_adapter.tanimla> {
                         holder.degerlendir.getText().toString(), finalSaat,ders_yaptimi);
                 String sonuc=helper.odev_kaydet(kisisel_model);
                 if (sonuc.equals("Başarıyla Eklendi")){
-                    new SweetAlertDialog(context,SweetAlertDialog.SUCCESS_TYPE).setConfirmText("Tamam").setContentText(data_arr.get(position).getIsim()+
+                    createAlert.warningAlert(data_arr.get(position).getIsim()+
                             " Öğrencisine "+sonuc).show();
                     holder.yapilan.setText("");
                     holder.artıeksi.setText("");
