@@ -19,7 +19,7 @@ import java.util.Comparator;
 // stdtable+id
 public class dbhelper extends SQLiteOpenHelper {
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-    public static final String database_name = "allahuekber99";
+    public static final String database_name = "allahuekberrrr";
     public static final String table_name = "student";
     public static final String col_isim = "isim";
     public static final String col_soyisim = "soyisim";
@@ -413,80 +413,8 @@ public class dbhelper extends SQLiteOpenHelper {
     }
 
 
-    ////////////////////////////////////////////////////////////////////////////////////
-    //login
-    public Boolean login(String username, String password) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("Select * from " + user_table_name + " where " + col_username + " =? and " + col_pass + " =? ", new String[]{username, password});
-        if (cursor.getCount() > 0) {
-            cursor.close();
-            db.close();
-            return true;
-        }
-        cursor.close();
-        db.close();
-        return false;
-    }
 
-    public Boolean register(String username, String password) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(col_username, username);
-        values.put(col_pass, password);
-        Boolean res = false;
-        try {
-            db.insert(user_table_name, null, values);
-            res = true;
-        } catch (Exception e) {
-            res = false;
-            e.printStackTrace();
-        }
-        db.close();
-        return res;
-    }
 
-    public void useregister() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(user_table_name, null, null, null, null, null, null);
-        if (cursor.getCount() > 0) {
-            db.close();
-            cursor.close();
-            return;
-        } else {
-            register("admin", "admin");
-            db.close();
-            cursor.close();
-        }
-    }
-
-    public Boolean changepass(String username, String pass, String newpass) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(col_pass, newpass);
-        Cursor cursor = db.rawQuery("Select * from " + user_table_name + " where " + col_username + " =? and " + col_pass + " =? ", new String[]{username, pass});
-        Boolean log = false;
-        if (cursor.getCount() > 0) {
-            cursor.close();
-            log = true;
-        }
-
-        int id = 1;
-        if (log) {
-            try {
-                db.update(user_table_name, values, " id = ? ", new String[]{String.valueOf(id)});
-                db.close();
-                return true;
-            } catch (Exception e) {
-                e.printStackTrace();
-                db.close();
-                return false;
-            }
-
-        }
-        db.close();
-        return false;
-
-    }
 
     private class CustomComparatorLetter implements Comparator<ogrenci_model> {
 
