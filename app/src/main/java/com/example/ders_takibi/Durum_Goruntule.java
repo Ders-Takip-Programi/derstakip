@@ -21,13 +21,13 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
-
 public class Durum_Goruntule extends AppCompatActivity {
     Button anasayfabutton;
     RecyclerView recview;
@@ -35,7 +35,8 @@ public class Durum_Goruntule extends AppCompatActivity {
     TextView mtv3;
     RecyclerView.LayoutManager layoutManager;
     Calendar c;
-
+    Date2Day date2Day;
+    CreateAlert createAlert;
     String selected_date;
     String selected_day_name;
     SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
@@ -43,11 +44,8 @@ public class Durum_Goruntule extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.action_bar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        TextView tx=findViewById(R.id.actionbar_textview);
-        tx.setText("Yapılan Ödevler");
+        CreateActionBar createActionBar=new CreateActionBar(this,getSupportActionBar(),"Ödev Görüntüle");
+
         setContentView(R.layout.durum__goruntule);
         tanımla();
         tıklama();
@@ -59,44 +57,21 @@ public class Durum_Goruntule extends AppCompatActivity {
         recview.setAdapter(adapter);
         recview.setNestedScrollingEnabled(true);
     }
+
     public void tanımla(){
 
         recview=findViewById(R.id.recview3);
         db=new dbhelper(getApplicationContext());
         layoutManager=new LinearLayoutManager(getApplicationContext());
         recview.setLayoutManager(layoutManager);
-        BottomNavigationView navbar;
-        mtv3=findViewById(R.id.mtv3);
-        mtv3.setSelected(true);
-        navbar=findViewById(R.id.bottomBar);
-        navbar.setSelectedItemId(R.id.nav_odevgoster);
-        navbar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
-                    case R.id.nav_anasayfa:
-                        Intent i=new Intent(getApplicationContext(),Anasayfa.class);
-                        startActivity(i);
-                        return true;
-                    case R.id.nav_odevekle:
-                        show_datedialog();
-                        return true;
-                    case R.id.nav_odevgoster:
+        date2Day=new Date2Day();
+        createAlert=new CreateAlert(getApplicationContext());
+      bottom_bar_call();
 
-                        return true;
-                    case R.id.nav_ogrekle:
-                        Intent i3=new Intent(getApplicationContext(),Ogrenci_Ekle.class);
-                        startActivity(i3);
-                        return true;
-                    case R.id.nav_ogrlistele:
-                        Intent i2=new Intent(getApplicationContext(),Ogrenci_Listesi.class);
-                        startActivity(i2);
-                        return true;
-                }
-                return false;
-            }
-        });
-
+    }
+    private void bottom_bar_call(){
+        BottomBarActions bottomBarActions=new BottomBarActions(getApplicationContext(),R.id.nav_odevgoster,Durum_Goruntule.class,this);
+        bottomBarActions.select_navbar();
     }
     public void tıklama(){
 
@@ -109,7 +84,7 @@ public class Durum_Goruntule extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 i1++; //month starts zero
                 String tarih=String.valueOf(i)+"-"+String.valueOf(i1)+"-"+String.valueOf(i2);
-             //   Toast.makeText(getApplicationContext(),tarih,Toast.LENGTH_LONG).show();
+
                 if(tarih != null && !tarih .isEmpty()) {
                     try {
                         //SECİLEN TARİHİ DATE OBJESİNE ATIYORUZ
@@ -120,11 +95,11 @@ public class Durum_Goruntule extends AppCompatActivity {
 
                 }
                 else{
-                    new SweetAlertDialog(Durum_Goruntule.this,SweetAlertDialog.ERROR_TYPE).setTitleText("Hata!").setContentText("Tarih seçin!").show();
+                    createAlert.errorAlert("Tarih seçin!").show();
                 }
-                //Toast.makeText(getApplicationContext(),format.format(c.getTime()),Toast.LENGTH_LONG).show();
+
                 selected_date=format.format(c.getTime());
-                selected_day_name=getDayOfWeek(c.get(Calendar.DAY_OF_WEEK));
+                selected_day_name=date2Day.getDayOfWeek(c.get(Calendar.DAY_OF_WEEK));
                 Intent intent=new Intent(getApplicationContext(),Odev_Ekle.class);
                 intent.putExtra("date",selected_date);
                 intent.putExtra("day",selected_day_name);
@@ -137,31 +112,5 @@ public class Durum_Goruntule extends AppCompatActivity {
                 Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         dialogg.show();
     }
-    private String getDayOfWeek(int value) {
-        String day = "";
-        switch (value) {
-            case 1:
-                day = "Pazar";
-                break;
-            case 2:
-                day = "Pazartesi";
-                break;
-            case 3:
-                day = "Salı";
-                break;
-            case 4:
-                day = "Çarşamba";
-                break;
-            case 5:
-                day = "Perşembe";
-                break;
-            case 6:
-                day = "Cuma";
-                break;
-            case 7:
-                day = "Cumartesi";
-                break;
-        }
-        return day;
-    }
+
 }
