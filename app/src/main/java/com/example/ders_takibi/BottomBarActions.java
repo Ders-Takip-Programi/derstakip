@@ -21,6 +21,7 @@ import java.util.Calendar;
 public class BottomBarActions {
     private int resId;
     private Class aClass;
+    Date2Day date2Day;
     Calendar c;
     RelativeLayout rel;
     String selected_date;
@@ -32,6 +33,7 @@ public class BottomBarActions {
     MenuItem menuItem;
     public BottomBarActions(Context context, int resId, Class className, Activity activity)
     {
+        date2Day=new Date2Day();
         this.aClass=className;
         this.resId=resId;
         this.context=context;
@@ -100,9 +102,9 @@ public class BottomBarActions {
                 }
 
 
-                //Toast.makeText(getApplicationContext(),format.format(c.getTime()),Toast.LENGTH_LONG).show();
+
                 selected_date=format.format(c.getTime());
-                selected_day_name=getDayOfWeek(c.get(Calendar.DAY_OF_WEEK));
+                selected_day_name=date2Day.getDayOfWeek(c.get(Calendar.DAY_OF_WEEK));
                 Intent intent=new Intent(context,Odev_Ekle.class);
                 intent.putExtra("date",selected_date);
                 intent.putExtra("day",selected_day_name);
@@ -115,32 +117,6 @@ public class BottomBarActions {
                 Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         dialogg.show();
     }
-    private String getDayOfWeek(int value) {
-        String day = "";
-        switch (value) {
-            case 1:
-                day = "Pazar";
-                break;
-            case 2:
-                day = "Pazartesi";
-                break;
-            case 3:
-                day = "Salı";
-                break;
-            case 4:
-                day = "Çarşamba";
-                break;
-            case 5:
-                day = "Perşembe";
-                break;
-            case 6:
-                day = "Cuma";
-                break;
-            case 7:
-                day = "Cumartesi";
-                break;
-        }
-        return day;
-    }
+
 
 }
