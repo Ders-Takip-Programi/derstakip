@@ -70,8 +70,8 @@ public class odev_adapter extends RecyclerView.Adapter<odev_adapter.tanimla> {
         final String finalSaat = saat;
         holder.yapti_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b){
+            public void onCheckedChanged(CompoundButton compoundButton, boolean changed) {
+                if (changed){
                     holder.artıeksi.setInputType(InputType.TYPE_CLASS_TEXT);
                     holder.not.setInputType(InputType.TYPE_CLASS_TEXT);
                     holder.yapilan.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -100,7 +100,8 @@ public class odev_adapter extends RecyclerView.Adapter<odev_adapter.tanimla> {
                 }
                 else {
                 String ders_yaptimi="1";
-                if(  holder.yapilan.getText().toString().trim().equals("") && holder.toplam.getText().toString().trim().equals("") && holder.not.getText().toString().trim().equals("") && holder.artıeksi.getText().toString().trim().equals("")){
+                if(  holder.yapilan.getText().toString().trim().equals("") && holder.toplam.getText().toString().trim().equals("") &&
+                        holder.not.getText().toString().trim().equals("") && holder.artıeksi.getText().toString().trim().equals("")){
                     ders_yaptimi="0";
                 }
                 ogrenci_kisisel_model kisisel_model=new ogrenci_kisisel_model(data_arr.get(position).getId(),tarih,gun,
@@ -108,7 +109,8 @@ public class odev_adapter extends RecyclerView.Adapter<odev_adapter.tanimla> {
                         holder.degerlendir.getText().toString(), finalSaat,ders_yaptimi);
                 String sonuc=helper.odev_kaydet(kisisel_model);
                 if (sonuc.equals("Başarıyla Eklendi")){
-                    new SweetAlertDialog(context,SweetAlertDialog.SUCCESS_TYPE).setConfirmText("Tamam").setContentText(data_arr.get(position).getIsim()+" Öğrencisine "+sonuc).show();
+                    new SweetAlertDialog(context,SweetAlertDialog.SUCCESS_TYPE).setConfirmText("Tamam").setContentText(data_arr.get(position).getIsim()+
+                            " Öğrencisine "+sonuc).show();
                     holder.yapilan.setText("");
                     holder.artıeksi.setText("");
                     holder.degerlendir.setText("");
